@@ -10,6 +10,10 @@ const author = document.getElementById(`author`);
 const pages = document.getElementById(`pages`);
 const checkbox = document.getElementById(`checkbox`);
 
+function testFunc() {
+  return null;
+}
+
 var library = [
   {
     bookId: 1,
