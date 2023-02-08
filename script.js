@@ -46,9 +46,12 @@ document.body.addEventListener("click", function (event) {
     const bookToRemove = event.target.parentNode;
     parentValue = bookToRemove.getAttribute(`data-value`);
     removeBookFromLibrary(parentValue);
-
-    console.log(library);
     bookGrid.removeChild(bookToRemove);
+  } else if (event.target.classList.contains("read-button")) {
+    const bookToRead = event.target.parentNode;
+    parentValue = bookToRead.getAttribute(`data-value`);
+    changeBookReadStatus(parentValue);
+    buildLibrary(library);
   }
 });
 
@@ -61,6 +64,12 @@ window.onclick = function (event) {
     newBookModal.style.display = "none";
   }
 };
+
+function changeBookReadStatus(bookId) {
+  const bookIndex = library.findIndex((book) => book.bookId == bookId);
+  let book = library[bookIndex];
+  book.beenRead ? (book.beenRead = false) : (book.beenRead = true);
+}
 
 function getBookFromModal() {
   return {
@@ -108,7 +117,7 @@ function createBookTile(bookObject) {
   const title = document.createElement(`p`);
   const author = document.createElement(`p`);
   const pages = document.createElement(`p`);
-  const beenRead = document.createElement(`p`);
+  const beenRead = document.createElement(`button`);
   const removeButton = document.createElement(`button`);
 
   bookTile.classList.add(`grid-item`);
@@ -120,8 +129,10 @@ function createBookTile(bookObject) {
 
   if (bookObject.beenRead) {
     beenRead.textContent = `Have been read`;
+    beenRead.classList.add("red-button", "read-button");
   } else if (!bookObject.beenRead) {
     beenRead.textContent = `Have not been read`;
+    beenRead.classList.add("green-button", "read-button");
   }
 
   removeButton.classList.add(`remove-book`);
@@ -136,6 +147,7 @@ function addToGrid(bookElement) {
 }
 
 function buildLibrary(library) {
+  bookGrid.textContent = "";
   library.forEach((book) => {
     addToGrid(createBookTile(book));
   });
