@@ -113,13 +113,11 @@ input {
   border-radius: 5px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
-  font-size: 16px;
 }
 
 button {
   display: block;
   background-color: #f0f0f0;
-  color: white;
   padding: 20px;
   font-size: 16px;
   border: none;
@@ -129,7 +127,7 @@ button {
 }
 
 button:hover {
-  background-color: #d2d2d2;
+  background-color: #e0e0e0;
 }
 
 .remove-book {
@@ -141,4 +139,20 @@ button:hover {
 #newBookForm {
   display: flex;
   flex-direction: column;
+}
+
+.red-button {
+  background-color: rgb(226, 89, 89);
+}
+
+.red-button:hover {
+  background-color: rgb(198, 81, 81);
+}
+
+.green-button {
+  background-color: rgb(88, 176, 88);
+}
+
+.green-button:hover {
+  background-color: rgb(79, 158, 79);
 }
